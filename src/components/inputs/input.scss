@@ -1,0 +1,11 @@
+.appInputField{
+    outline: none;
+    border: none;
+    border-bottom: 1px solid var(--borderBottom);
+    max-width: 100%;
+
+    &:focus{
+        border-bottom: 1px solid var(--primary);
+        transition: 0.3s ease-in;
+    }
+}
