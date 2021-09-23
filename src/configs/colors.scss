@@ -1,10 +1,17 @@
 :root{
-    // backgrounds
+
     --primary: red;
+    
+    // backgrounds
+    --app-bg: #f7f6f7;
+
+    --primary-bg: #fff;
+
+    --player-bg: rgba(255, 255, 255, 0.2);
 
     // texts
-    --primaryText: #333;
-    --secondaryText: #666;
+    --primaryText: #3e3e3e;
+    --secondaryText: #a9a9a9;
     --disabledText: #999;
 
     // buttons
@@ -16,4 +23,12 @@
     // borders
     --borderBottom: #666;
 
+}
+
+.dark{
+    --app-bg: #000;
+
+    --primary-bg: #333;
+
+    --primaryText: #999;
 }

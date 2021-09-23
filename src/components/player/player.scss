@@ -1,0 +1,43 @@
+.player{
+    position: fixed;
+    bottom: 65px;
+    height: 70px;
+    width: 100%;
+    background: var(--player-bg);
+    backdrop-filter: blur(10px);
+    padding-right: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .song_info{
+        display: flex;
+        align-items: center;
+
+        .song_cover{
+            margin-left: 0.5rem;
+            img{
+                max-width: 50px;
+                border-radius: 5px;
+            }
+        }
+        .song_details{
+            margin-left: 1rem;
+
+            p{
+                &:first-child{
+                    font-weight: 600;
+                }
+                &:last-child{
+                    font-size: 0.8rem;
+                    color: var(--secondaryText);
+                }
+            }
+        }
+    }
+
+    .controls{
+        display: flex;
+        align-items: center;
+    }
+}

@@ -1,16 +1,20 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+
 import './App.css';
 
 // importing default styles from config
 import './configs/colors.scss'
 
-import Home from './containers/Home';
+import AppContainer from './containers/AppContainer';
 
 const App = () => {
   return(
-    <>
-      <Home />
-    </>
+    <div className="App">
+      <Router>
+        <AppContainer />
+      </Router>
+    </div>
   )
 }
 

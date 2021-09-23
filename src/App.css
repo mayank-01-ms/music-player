@@ -1,6 +1,14 @@
 .App{
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   font-size: 0.85rem;
-  color: #666;
+  color: var(--primaryText);
+  background: var(--app-bg);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.App a{
+  color: var(--primaryText);
+  text-decoration: none;
 }

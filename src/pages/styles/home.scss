@@ -1,0 +1,60 @@
+.home_container{
+
+    ul{
+        list-style: none;
+    }
+
+    .lists{
+        display: flex;
+        overflow-x: scroll;
+        margin-top: 1rem;
+
+        // card list item
+        .list_item{
+            height: 200px;
+            width: 200px;
+            border-radius: 1rem;
+            background: var(--primary-bg);
+            margin-right: 1rem;
+        }
+
+        // rounded list item
+        .rounded{
+            height: 120px;
+            width: 120px;
+            border-radius: 50%;
+        }
+        // Title of list item
+        .title{
+            font-weight: 600;
+        }
+        .card_details{
+            display: grid;
+            place-items: center;
+            margin-top: 10px;
+        }
+
+        
+        &::-webkit-scrollbar{
+            display: none;
+        }
+    }
+
+
+    .trending{
+        .trending_lists{
+            .song_details{
+                .album_name{
+                    color: var(--secondaryText);
+                }
+            }
+        }
+    }
+
+    .top_albums{
+        margin-top: 1rem;
+    }
+    .artists{
+        margin-top: 1rem;
+    }
+}
