@@ -6,13 +6,16 @@ import './App.css';
 // importing default styles from config
 import './configs/colors.scss'
 
+import MusicProvider from './context/MusicContext';
 import AppContainer from './containers/AppContainer';
 
 const App = () => {
   return(
     <div className="App">
       <Router>
-        <AppContainer />
+        <MusicProvider>
+          <AppContainer />
+        </MusicProvider>
       </Router>
     </div>
   )

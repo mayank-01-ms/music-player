@@ -1,11 +1,16 @@
 .appInputField{
     outline: none;
     border: none;
-    border-bottom: 1px solid var(--borderBottom);
+    display: block;
+    width: 250px;
     max-width: 100%;
+    border: 1px solid var(--inputBorder);
+    border-radius: 3rem;
+    padding: 0.75rem 1rem;
+    margin-top: 5px;
 
     &:focus{
-        border-bottom: 1px solid var(--primary);
+        border: 1px solid var(--primary);
         transition: 0.3s ease-in;
     }
 }

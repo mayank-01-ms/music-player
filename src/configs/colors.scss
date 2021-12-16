@@ -21,14 +21,23 @@
     --boxShadow: rgba(0, 0, 0, 0.1);
 
     // borders
+    --inputBorder: rgba(153, 153, 153, 0.35);
     --borderBottom: #666;
 
+    // toggle background
+    --toggleBg: #d9d9d9;
+
+    // input fields
+    --inputBg: #fff;
+    
 }
 
 .dark{
     --app-bg: #000;
-
+    
     --primary-bg: #333;
-
+    
     --primaryText: #999;
+
+    --inputBg: #333;
 }

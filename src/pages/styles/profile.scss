@@ -1,0 +1,55 @@
+.profile_container{
+    .profile_details{
+        button{
+            margin-top: 1rem;
+            float: right;
+        }
+    }
+
+    .user_settings{
+        clear: both;
+        margin-top: 1rem;
+
+        ul{
+            margin-top: 0.5rem;
+            li{
+                display: flex;
+                justify-content: space-between;
+
+                input{
+                    display: none;
+
+                    &:checked + .toggle{
+                        background: var(--primary);
+
+                        &::after{
+                            left: 23px;
+                            border: 2px solid var(--primary);
+                        }
+                    }
+                }
+                .toggle{
+                    height: 23px;
+                    width: 45px;
+                    border-radius: 23px;
+                    background: var(--toggleBg);
+                    position: absolute;
+                    right: 5px;
+
+                    &::after{
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        height: 23px;
+                        width: 23px;
+                        border-radius: 50%;
+                        background: #fff;
+                        border: 2px solid #d9d9d9;
+                        box-sizing: border-box;
+                        transition: 0.3s;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,35 @@
+.playlist_container{
+    .playlists_list{
+        list-style: none;
+        margin-top: 1rem;
+
+        li{
+            display: flex;
+            background: var(--primary-bg);
+            padding: 0.75rem;
+            border-radius: 5px;
+            margin: 0.25rem 0;
+            
+            .playlist_icon{
+                width: 30px;
+            }
+            
+            .playlist_desc{
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+    }
+
+    .no_playlist_div{
+        margin-top: 1rem;
+        text-align: center;
+    }
+    .create_btn{
+        position: fixed;
+        bottom: 120px;
+        right: 1rem;
+        
+    }
+}

@@ -16,6 +16,11 @@
             border-radius: 1rem;
             background: var(--primary-bg);
             margin-right: 1rem;
+
+            img{
+                max-width: 100%;
+                border-radius: 1rem;
+            }
         }
 
         // rounded list item
@@ -23,6 +28,12 @@
             height: 120px;
             width: 120px;
             border-radius: 50%;
+            
+            img{
+                height: 100%;
+                width: 100%;
+                border-radius: 50%;
+            }
         }
         // Title of list item
         .title{
@@ -44,6 +55,12 @@
     .trending{
         .trending_lists{
             .song_details{
+                .title{
+                    width: 100%;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
                 .album_name{
                     color: var(--secondaryText);
                 }
