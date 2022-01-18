@@ -25,7 +25,8 @@ const AppContainer = ({children}) => {
     useEffect(() => {
         const container = document.querySelector('.App');
         const darkMode = localStorage.getItem('darkMode');
-        if(darkMode){
+        // we are getting darkmode value so in if condition we always have a set variable so checking this way
+        if(darkMode !== null && darkMode == true){
             container.classList.add('dark');
         }
     }, [])
