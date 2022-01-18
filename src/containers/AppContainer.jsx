@@ -26,7 +26,7 @@ const AppContainer = ({children}) => {
         const container = document.querySelector('.App');
         const darkMode = localStorage.getItem('darkMode');
         // we are getting darkmode value so in if condition we always have a set variable so checking this way
-        if(darkMode !== null && darkMode == true){
+        if(darkMode && darkMode === 'true'){
             container.classList.add('dark');
         }
     }, [])

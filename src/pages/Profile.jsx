@@ -10,10 +10,10 @@ const Profile = () => {
         const toggle = document.getElementById('darkModeToggle');
         if(toggle.checked){
             container.classList.add('dark');
-            localStorage.setItem('darkMode', true);
+            localStorage.setItem('darkMode', 'true');
         } else{
             container.classList.remove('dark'); 
-            localStorage.setItem('darkMode', false);
+            localStorage.setItem('darkMode', 'false');
         }
     }
     
@@ -21,7 +21,7 @@ const Profile = () => {
     useEffect(() => {
         const darkMode = localStorage.getItem('darkMode');
         const toggle = document.getElementById('darkModeToggle');
-        if(darkMode){
+        if(darkMode && darkMode === 'true'){
             toggle.checked = true;
         }
     }, []);
