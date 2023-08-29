@@ -154,3 +154,14 @@
         }
     }
 }
+
+// design for large screens 
+@media only screen and (min-width: 768px) {
+    .player{
+        bottom: 0;
+
+        .currently_playing{
+            margin-left: 20rem;
+        }
+    }
+}

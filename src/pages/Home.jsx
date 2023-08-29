@@ -11,7 +11,7 @@ import './styles/home.scss';
 
 const Home = () => {
 
-    const { setSongsQueue, setCurrentlyPlayingIndex, setIsPlaying } = useContext(MusicContext);
+    const { setSongsQueue, setCurrentlyPlayingIndex, setIsPlaying, setCurentlyPlayingSongId } = useContext(MusicContext);
 
     // states
     const [trendingSongs, setTrendingSongs] = useState(null);
@@ -70,6 +70,8 @@ const Home = () => {
         
         // start playing songs if not playing
         setIsPlaying(true);
+
+        setCurentlyPlayingSongId(trendingSongs[index].id);
     }
 
     document.title = "Home";
@@ -127,6 +129,11 @@ const Home = () => {
                 }
                 </ul>
             </div>
+            <footer>
+                This app is designed and maintained by Mayank Singh
+                <br />
+                &copy; {new Date().getFullYear()}
+            </footer>
         </div>
     )
 }

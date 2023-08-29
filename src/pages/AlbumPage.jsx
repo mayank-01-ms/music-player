@@ -15,18 +15,18 @@ import './styles/album.scss';
 const { SONG_COVER_URL, ALBUM_COVER_URL } = CONSTANTS;
 
 // create other component here only
-const ListItem = ({songName, artist, cover, updateSongHandler}) => {
-    return(
-        <li className="song_list_item">
+const ListItem = ({ songName, artist, cover, updateSongHandler, activeClass }) => {
+    return (
+        <li className={`song_list_item ${activeClass === true ? 'active' : ''}`}>
             <div className="song_cover">
-            <img src={SONG_COVER_URL + cover} alt={songName + " cover"} />
+                <img src={SONG_COVER_URL + cover} alt={songName + " cover"} />
             </div>
             <div className="song_details">
                 <p>{songName}</p>
                 <p>{artist}</p>
             </div>
             <div className="control_button">
-                <IoPlay 
+                <IoPlay
                     size='1.3rem'
                     onClick={updateSongHandler}
                 />
@@ -37,18 +37,24 @@ const ListItem = ({songName, artist, cover, updateSongHandler}) => {
 
 const AlbumPage = () => {
 
-    const { setSongsQueue, setCurrentlyPlayingIndex, setIsPlaying } = useContext(MusicContext);
+    const {
+        setSongsQueue,
+        setCurrentlyPlayingIndex,
+        setIsPlaying,
+        curentlyPlayingSongId,
+        setCurentlyPlayingSongId
+    } = useContext(MusicContext);
 
     // getting album name from the URL
-    const {album_name} = useParams();
+    const { album_name } = useParams();
 
     // state to store all album songs
     const [albumSongs, setAlbumSongs] = useState(null);
-    
-    const fetchAlbumSongs = async() => {
+
+    const fetchAlbumSongs = async () => {
         try {
             const response = await axios.get('/api/album_songs/' + album_name);
-            if(response.status === 200){
+            if (response.status === 200) {
                 setAlbumSongs(response.data);
             }
         } catch (error) {
@@ -71,12 +77,14 @@ const AlbumPage = () => {
 
         // starting queue from the selected index
         setCurrentlyPlayingIndex(index);
-        
+
         // start playing songs if not playing
         setIsPlaying(true);
+
+        setCurentlyPlayingSongId(albumSongs[index].id);
     }
 
-    return ( 
+    return (
         <div className="albums_page_container">
             <div className="albums_details">
                 <div className="album_cover">
@@ -85,26 +93,27 @@ const AlbumPage = () => {
                 <div className="album_info">
                     <p>{album_name}</p>
                     <p>Playlist created by us.</p>
-                    <IconButton 
+                    <IconButton
                         title="Play all"
-                        icon={<MdPlayCircleOutline 
+                        icon={<MdPlayCircleOutline
                             size='1.2rem'
                         />}
                         onClick={() => updateSongsQueue()}
                     />
                 </div>
             </div>
-            <div className="album_songs"> 
-            <h3>{albumSongs && albumSongs.length} Tracks</h3>  
+            <div className="album_songs">
+                <h3>{albumSongs && albumSongs.length} Tracks</h3>
                 <ul>
                     {
                         albumSongs && albumSongs.map((song, index) => {
-                            return <ListItem 
+                            return <ListItem
                                 key={song.id}
                                 updateSongHandler={() => updateSongsQueue(index)}
                                 songName={song.title}
                                 artist={song.artist_name}
                                 cover={song.cover}
+                                activeClass={curentlyPlayingSongId === song.id}
                                 src={song.song_name} //redundant
                             />
                         })

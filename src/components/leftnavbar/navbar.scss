@@ -1,0 +1,42 @@
+.navbar{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20rem;
+    height: 100%;
+    padding-top: 80px;
+    padding-left: 5rem;
+    backdrop-filter: blur(15px);
+
+    .app_logo{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 3rem;
+    }
+    
+    h4{
+        margin-top: 1.5rem;
+    }
+    .links{
+        li{
+            display: block;
+            margin: 0.75rem 0;
+    
+            a.active{
+                color: var(--primary);
+            }
+        }
+    }
+
+    button{
+        position: relative;
+        top: 10rem;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .navbar{
+        display: block;
+    }
+}

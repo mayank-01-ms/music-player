@@ -55,6 +55,7 @@
     .trending{
         .trending_lists{
             .song_details{
+                text-align: center;
                 .title{
                     width: 100%;
                     white-space: nowrap;
@@ -73,5 +74,11 @@
     }
     .artists{
         margin-top: 1rem;
+    }
+
+    footer{
+        margin: 2rem 0 5rem;
+        text-align: center;
+        color: var(--secondaryText);
     }
 }

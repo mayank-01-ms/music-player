@@ -4,6 +4,7 @@ import { MdPlayCircleOutline, MdPlaylistAdd } from "react-icons/md";
 import axios from 'axios';
 
 import IconButton from '../components/buttons/IconButton';
+import SearchSongModal from '../components/modals/SearchSongModal';
 import { IoPlay } from "react-icons/io5";
 
 import { MusicContext } from '../context/MusicContext';
@@ -15,9 +16,9 @@ import './styles/album.scss';
 const { SONG_COVER_URL, ALBUM_COVER_URL } = CONSTANTS;
 
 // create other component here only
-const ListItem = ({songName, artist, cover, updateSongHandler}) => {
+const ListItem = ({songName, artist, cover, updateSongHandler, activeClass}) => {
     return(
-        <li className="song_list_item">
+        <li className={`song_list_item ${activeClass === true ? 'active' :''}`}>
             <div className="song_cover">
             <img src={SONG_COVER_URL + cover} alt={songName + " cover"} />
             </div>
@@ -37,14 +38,24 @@ const ListItem = ({songName, artist, cover, updateSongHandler}) => {
 
 const PlaylistPage = () => {
 
-    const { setSongsQueue, setCurrentlyPlayingIndex, setIsPlaying } = useContext(MusicContext);
+    const { 
+        setSongsQueue, 
+        setCurrentlyPlayingIndex, 
+        setIsPlaying, 
+        curentlyPlayingSongId,
+        setCurentlyPlayingSongId
+     } = useContext(MusicContext);
 
     // getting album name from the URL
     const {playlist_name} = useParams();
 
     // state to store all album songs
     const [playlistSongs, setPlaylistSongs] = useState(null);
-    console.log(playlistSongs);
+
+    // this variable is passed to add songs modal which will reload playlist songs once a song is added
+    const [isListChanged, setIsListChanged] = useState(false);
+
+    const [modalOpen, setModalOpen] = useState(false);
     
     const fetchPlaylistSongs = async() => {
         try {
@@ -61,7 +72,7 @@ const PlaylistPage = () => {
         fetchPlaylistSongs();
         // Disabling eslint empty dependency warning
         // eslint-disable-next-line
-    }, []);
+    }, [isListChanged]);
 
     document.title = playlist_name;
 
@@ -78,6 +89,8 @@ const PlaylistPage = () => {
         
         // start playing songs if not playing
         setIsPlaying(true);
+
+        setCurentlyPlayingSongId(playlistSongs[index].id);
     }
 
     return ( 
@@ -109,6 +122,7 @@ const PlaylistPage = () => {
                                 songName={song.title}
                                 artist={song.artist_name}
                                 cover={song.cover}
+                                activeClass={curentlyPlayingSongId === song.id}
                                 src={song.song_name} //redundant
                             />
                         })
@@ -120,9 +134,18 @@ const PlaylistPage = () => {
                         icon={<MdPlaylistAdd
                             size="1.5rem"
                         />}
+                        onClick={() => {
+                            // document.querySelector('.App').classList.add('translucent_bg');
+                            setModalOpen(true)
+                        }}
                     />
                 </div>
             </div>
+            {modalOpen && <SearchSongModal 
+                playlist_name={playlist_name}
+                setIsListChanged={setIsListChanged}
+                handleClose={() => setModalOpen(false)}
+            />}
         </div>
     )
 }

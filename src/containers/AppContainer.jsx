@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import Footer from '../components/footer/Footer';
 import Header from '../components/header/Header';
@@ -16,10 +16,21 @@ import AlbumPage from '../pages/AlbumPage';
 import ArtistPage from '../pages/ArtistPage';
 import PlaylistPage from '../pages/PlaylistPage';
 
+import UserRoute from '../protectedRoutes/UserRoute';
+
 import './styles/container.scss';
+import Navbar from '../components/leftnavbar/Navbar';
+import Artists from '../pages/Artists';
+
+import { AuthContext } from '../auth/AuthProvider';
 
 // This component targets mobile / tablets
 const AppContainer = ({children}) => {
+
+    const { authMemo } = useContext(AuthContext);
+    console.log('====================================');
+    console.log(authMemo);
+    console.log('====================================');
 
     // add dark mode class if enabled
     useEffect(() => {
@@ -38,7 +49,8 @@ const AppContainer = ({children}) => {
             {/*Since this is a container so it render everything inside it  
             therefore rendering children component
             */}
-            <div style={{margin: '0 1rem', paddingTop: '60px', paddingBottom: '150px'}}>
+            <Navbar />
+            <div className='main_container'>
                 {children}
                 <Switch>
                     <Route exact path="/">
@@ -46,13 +58,22 @@ const AppContainer = ({children}) => {
                     </Route>
                     <Route exact path="/home" component={Home} />
                     <Route exact path="/search" component={Search} />
-                    <Route exact path="/profile" component={Profile} />
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/signup" component={Signup} />
-                    <Route exact path="/playlists" component={Playlists} />
+                    <Route exact path="/artists" component={Artists} />
                     <Route exact path="/album/:album_name" component={AlbumPage} />
-                    <Route exact path="/playlist/:playlist_name" component={PlaylistPage} />
                     <Route exact path="/artist/:artist_name" component={ArtistPage} />
+
+                    {
+                        /* React components starts with caps. User route is custom route component
+                        which renders a <Component /> only on logged in state. 
+                        So Component property is capitalised.
+                        The other work around is to pass components as <Comp /> rather than just its name*/
+                    }
+                    {/* exact param passed in the custom component definition */}
+                    <UserRoute path="/profile" Component={Profile} />
+                    <UserRoute path="/playlist/:playlist_name" Component={PlaylistPage} />
+                    <UserRoute path="/playlists" Component={Playlists} />
                 </Switch>
             </div>
 

@@ -7,6 +7,9 @@ const MusicProvider = ({children}) => {
     // currently playing or not state
     const [isPlaying, setIsPlaying] = useState(false);
 
+    // currently playing song id
+    const [curentlyPlayingSongId, setCurentlyPlayingSongId] = useState(null);
+
     // This will contain currently playing index in the queue
     // Also it will help in playing song at a particular index and start the queue from there
     const [currentlyPlayingIndex, setCurrentlyPlayingIndex] = useState(0);
@@ -23,7 +26,9 @@ const MusicProvider = ({children}) => {
                 songsQueue,
                 setSongsQueue,
                 currentlyPlayingIndex,
-                setCurrentlyPlayingIndex
+                setCurrentlyPlayingIndex,
+                curentlyPlayingSongId,
+                setCurentlyPlayingSongId
             }}
         >
             {children}
